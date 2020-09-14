@@ -41,7 +41,7 @@ void manychessmoves(int N, char gamestate[], char goodmove[])
     }
     while((pid = wait(&status)) > 0)
     {
-        printf("pid=%i has terminated\n", pid);
+        printf("pid=%i has terminated with status=%i\n", pid, status);
     }
 }
 
