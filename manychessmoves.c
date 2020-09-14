@@ -16,7 +16,7 @@ int start_onemove(int N, char gamestate[], char goodmove[])
         case 0:
             printf("child pid=%i\n", getpid());
             //...
-            sleep(4);
+            execl("./goodchessmove", "goodchessmove", gamestate, goodmove, NULL);
             exit(EXIT_SUCCESS);
             break;
         default:
@@ -29,6 +29,7 @@ void manychessmoves(int N, char gamestate[], char goodmove[])
 {
     for(int i = 0; i < N; ++i)
     {
+        int status;
         int pid = start_onemove(i, gamestate, goodmove);
 
         if(pid < 0) {

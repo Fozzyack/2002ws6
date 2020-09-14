@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
 
         srand( getpid() );              // seed the random number generator
         sleep( rand() % 4 + 1);         // sleep for a random time
+        printf("POWER\n");
         exit(EXIT_SUCCESS);
     }
     exit(EXIT_FAILURE);
