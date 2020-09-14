@@ -30,15 +30,17 @@ int start_onemove(int N, char gamestate[], char goodmove[])
 
 void manychessmoves(int N, char gamestate[], char goodmove[]) 
 {
+    int pid, status;
     for(int i = 0; i < N; ++i)
     {
-        int status;
-        int pid = start_onemove(i, gamestate, goodmove);
+        pid = start_onemove(i, gamestate, goodmove);
 
         if(pid < 0) {
             break;
         }
-        wait(&status);
+    }
+    while((pid = wait(&status)) > 0)
+    {
         printf("pid=%i has terminated\n", pid);
     }
 }
