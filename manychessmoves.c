@@ -14,7 +14,10 @@ int start_onemove(int N, char gamestate[], char goodmove[])
             exit(EXIT_FAILURE);
             break;
         case 0:
-            printf("child pid=%i\n", getpid())
+            printf("child pid=%i\n", getpid());
+            ...
+            break;
+        default:
     }
     return N;
 }
