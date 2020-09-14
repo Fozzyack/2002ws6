@@ -5,11 +5,5 @@ Repo was made so I could experiment doing a project whilst also uploading (in st
 This was done through:
 
 1. Incremental additions
-
 2. Incremental Commits
-
 3. Long times between pushes
-
-Why does typing liek this not
-make a new line
-what the fuck
