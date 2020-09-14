@@ -27,9 +27,13 @@ int start_onemove(int N, char gamestate[], char goodmove[])
     }  
     return pid;
 }
-
+int numberOfCores(void) {return 4;}
 void manychessmoves(int N, char gamestate[], char goodmove[]) 
 {
+    int ncores = numberOfCores();
+    int nstarted = 0;
+    int nrunning = 0;
+    int nfinished = 0;
     int pid, status;
     for(int i = 0; i < N; ++i)
     {
