@@ -27,26 +27,36 @@ int start_onemove(int N, char gamestate[], char goodmove[])
     }  
     return pid;
 }
-int numberOfCores(void) {return 4;}
+int numberOfCores(void) {return 7;}
 void manychessmoves(int N, char gamestate[], char goodmove[]) 
 {
-    int ncores = numberOfCores();
-    int nstarted = 0;
-    int nrunning = 0;
-    int nfinished = 0;
+    int ncores          = numberOfCores();
+    int nstarted        = 0;
+    int nrunning        = 0;
+    int nfinished       = 0;
     int pid, status;
-    for(int i = 0; i < N; ++i)
-    {
-        pid = start_onemove(i, gamestate, goodmove);
 
-        if(pid < 0) {
-            break;
+    while(nfinished < N) {
+        while(nrunning < ncores && nstarted < N) {
+            pid = start_onemove(nfinished, gamestate, goodmove);
+
+            if(pid < 0) {
+                break;
+            }
+
+            printf("Parent waits for pid=%i\n", pid);
+            ++nstarted;
+            ++nrunning;
+        }
+
+        if((pid = wait(&status)) > 0)
+        {
+            ++nfinished;
+            --nrunning;
+            printf("pid=%i has terminated with status=%i\n", pid, status);
         }
     }
-    while((pid = wait(&status)) > 0)
-    {
-        printf("pid=%i has terminated with status=%i\n", pid, status);
-    }
+    
 }
 
 int main(int argc, char *argv[])
