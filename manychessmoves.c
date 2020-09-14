@@ -13,12 +13,15 @@ int start_onemove(int N, char gamestate[], char goodmove[])
             printf("cannot fork");
             exit(EXIT_FAILURE);
             break;
-        case 0:
+        case 0: {
+            char filename[100];
+            sprintf(filename,"%s-%i", goodmove, N);
             printf("child pid=%i\n", getpid());
             //...
             execl("./goodchessmove", "goodchessmove", gamestate, goodmove, NULL);
             exit(EXIT_SUCCESS);
             break;
+        }
         default:
             break;
     }  
