@@ -35,6 +35,7 @@ void manychessmoves(int N, char gamestate[], char goodmove[])
             break;
         }
         wait(&status);
+        printf("pid=%i has terminated\n", pid);
     }
 }
 
